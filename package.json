@@ -1,0 +1,17 @@
+{
+  "name": "gun-wiki-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel run start:dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "dependencies": {
+    "@nestjs/mongoose": "^11.0.4",
+    "mongoose": "^9.1.6"
+  }
+}
