@@ -1,0 +1,19 @@
+### 1. GET ALL GUNS
+GET http://localhost:4000/guns
+
+### 2. CREATE AK-47
+POST http://localhost:4000/guns
+Content-Type: application/json
+
+{
+  "name": "AK-47",
+  "manufacturer": "Kalashnikov Concern",
+  "description": "The most popular assault rifle in the world.",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/AK-47_type_II_Part_DM-ST-89-01131.jpg",
+  "specs": {
+    "caliber": "7.62x39mm",
+    "weight": "3.47 kg",
+    "length": "880 mm",
+    "action": "Gas-operated"
+  }
+}
