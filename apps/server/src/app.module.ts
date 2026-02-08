@@ -5,7 +5,7 @@ import { GunsModule } from './modules/guns/guns.module';
 @Module({
   imports: [
     // Connect to MongoDB
-    MongooseModule.forRoot('mongodb://admin:password123@localhost:27017', {
+    MongooseModule.forRoot('mongodb://localhost:27017', {
       dbName: 'gun-wiki',
     }),
     GunsModule,

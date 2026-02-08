@@ -1,52 +1,6 @@
-[00:00:03.119] Server  LOG     ✓ Ready in 2.3s
-[00:00:15.702] Server  ERROR   ⨯ TypeError: fetch failed
-[00:00:16.353] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:01:22.132] Server  LOG     ✓ Compiled in 36ms
-[00:01:22.342] Server  ERROR   ⨯ TypeError: fetch failed
-[00:01:23.133] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:01:32.788] Server  ERROR   ⨯ TypeError: fetch failed
-[00:01:33.162] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:01:35.342] Server  ERROR   ⨯ TypeError: fetch failed
-[00:01:35.691] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:01:57.100] Browser ERROR   ./Desktop/GUN/apps/client/src/app/page.tsx:9:2
-Parsing ecmascript source code failed
-   7 |     <div>page</div>
-   8 |   )
->  9 | }";
-     |  ^^
-  10 | import Link from "next/link";
-  11 |
-  12 | // 1. This function runs on the SERVER, not the browser.
-
-Expected a semicolon
-[00:01:57.100] Browser ERROR   ./Desktop/GUN/apps/client/src/app/page.tsx:9:2
-Parsing ecmascript source code failed
-   7 |     <div>page</div>
-   8 |   )
->  9 | }";
-     |  ^^
-  10 | import Link from "next/link";
-  11 |
-  12 | // 1. This function runs on the SERVER, not the browser.
-
-Unterminated string constant
-[00:01:58.412] Server  LOG     ✓ Compiled in 63ms
-[00:01:58.485] Server  ERROR   ⨯ TypeError: fetch failed
-[00:01:59.149] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:04:06.613] Server  ERROR   ⨯ TypeError: fetch failed
-[00:04:08.100] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:04:10.886] Server  ERROR   ⨯ TypeError: fetch failed
-[00:04:11.976] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:04:13.107] Server  ERROR   ⨯ Error: The default export is not a React Component in "/page"
-[00:04:13.961] Server  ERROR   ⨯ Error: The default export is not a React Component in "/page"
-[00:04:17.022] Server  LOG     ○ Compiling /_error ...
-[00:04:18.498] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/page"
-[00:06:06.279] Server  LOG     ✓ Compiled in 69ms
-[00:06:17.581] Server  ERROR   ⨯ TypeError: fetch failed
-[00:06:18.090] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:06:47.910] Server  ERROR   ⨯ TypeError: fetch failed
-[00:06:48.274] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:12:55.312] Server  ERROR   ⨯ TypeError: fetch failed
-[00:12:55.777] Browser ERROR   uncaughtError: TypeError: fetch failed
-[00:14:31.840] Server  ERROR   ⨯ TypeError: fetch failed
-[00:14:32.195] Browser ERROR   uncaughtError: TypeError: fetch failed
+[00:00:02.051] Server  LOG     ✓ Ready in 1472ms
+[00:00:56.978] Server  ERROR   ⨯ TypeError: fetch failed
+[00:00:57.556] Server  ERROR   ⨯ TypeError: fetch failed
+[00:00:58.217] Browser ERROR   uncaughtError: TypeError: fetch failed
+[00:00:59.349] Server  ERROR   ⨯ TypeError: fetch failed
+[00:00:59.688] Browser ERROR   uncaughtError: TypeError: fetch failed
