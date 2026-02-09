@@ -1,0 +1,95 @@
+import { Gun } from "../../../types/gun";
+import Link from "next/link";
+
+// Fetch data for a single gun
+async function getGun(id: string): Promise<Gun | null> {
+  try {
+    const res = await fetch(`http://localhost:4000/guns/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (error) {
+    return null;
+  }
+}
+
+export default async function GunDetails({ params }: { params: { id: string } }) {
+  const gun = await getGun(params.id);
+
+  // Error State
+  if (!gun) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold mb-4">Gun Not Found</h1>
+        <Link href="/" className="text-blue-400 hover:underline">
+          ← Back to Wiki
+        </Link>
+      </div>
+    );
+  }
+
+  // Success State
+  return (
+    <main className="min-h-screen bg-gray-900 text-white p-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Back Button */}
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+        >
+          ← Back to Collection
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Left Column: Image */}
+          <div className="relative h-[500px] rounded-2xl overflow-hidden bg-gray-800 border border-gray-700 shadow-2xl">
+            <img
+              src={gun.image_url}
+              alt={gun.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Right Column: Details */}
+          <div className="flex flex-col justify-center">
+            <div className="mb-2">
+              <span className="bg-blue-600 text-sm font-bold px-3 py-1 rounded-full text-white">
+                {gun.manufacturer}
+              </span>
+            </div>
+            
+            <h1 className="text-6xl font-bold mb-6 tracking-tight">{gun.name}</h1>
+            
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              {gun.description}
+            </p>
+
+            {/* Tech Specs Table */}
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-lg font-bold mb-4 text-gray-400 uppercase tracking-wider">
+                Technical Specifications
+              </h3>
+              <div className="grid grid-cols-2 gap-y-4">
+                <SpecItem label="Caliber" value={gun.specs.caliber} />
+                <SpecItem label="Action" value={gun.specs.action} />
+                <SpecItem label="Weight" value={gun.specs.weight} />
+                <SpecItem label="Length" value={gun.specs.length} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// Helper Component for the table rows
+function SpecItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-b border-gray-700 pb-2 mr-4">
+      <span className="block text-gray-500 text-xs uppercase mb-1">{label}</span>
+      <span className="text-lg font-medium text-white">{value}</span>
+    </div>
+  );
+}
