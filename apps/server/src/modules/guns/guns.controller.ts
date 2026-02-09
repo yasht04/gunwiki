@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { GunsService } from './guns.service';
 
 @Controller('guns')
@@ -13,5 +13,11 @@ export class GunsController {
   @Get()
   findAll() {
     return this.gunsService.findAll();
+  }
+
+  // NEW: Route for getting one gun
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.gunsService.findOne(id);
   }
 }

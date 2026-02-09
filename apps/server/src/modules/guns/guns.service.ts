@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Gun } from '../../schemas/gun.schema';
@@ -14,5 +14,14 @@ export class GunsService {
 
   async findAll(): Promise<Gun[]> {
     return this.gunModel.find().exec();
+  }
+
+  // NEW: Find a single gun by ID
+  async findOne(id: string): Promise<Gun> {
+    const gun = await this.gunModel.findById(id).exec();
+    if (!gun) {
+      throw new NotFoundException(`Gun #${id} not found`);
+    }
+    return gun;
   }
 }
