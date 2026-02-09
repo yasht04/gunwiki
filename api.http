@@ -17,3 +17,53 @@ Content-Type: application/json
     "action": "Gas-operated"
   }
 }
+### 2. CREATE M4 CARBINE
+POST http://localhost:4000/guns
+Content-Type: application/json
+
+{
+  "name": "M4 Carbine",
+  "manufacturer": "Colt Defense",
+  "description": "The primary infantry weapon of the United States Armed Forces.",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/M4A1_ACOG.jpg",
+  "specs": {
+    "caliber": "5.56x45mm NATO",
+    "weight": "3.01 kg",
+    "length": "840 mm",
+    "action": "Gas-operated"
+  }
+}
+
+### 3. CREATE GLOCK 17
+POST http://localhost:4000/guns
+Content-Type: application/json
+
+{
+  "name": "Glock 17",
+  "manufacturer": "Glock Ges.m.b.H.",
+  "description": "The original polymer-framed pistol that revolutionized the handgun market.",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Glock_17_Gen_4.jpg",
+  "specs": {
+    "caliber": "9x19mm Parabellum",
+    "weight": "0.625 kg",
+    "length": "204 mm",
+    "action": "Short recoil"
+  }
+}
+
+### 4. CREATE DESERT EAGLE
+POST http://localhost:4000/guns
+Content-Type: application/json
+
+{
+  "name": "Desert Eagle",
+  "manufacturer": "Magnum Research",
+  "description": "A gas-operated semi-automatic pistol known for chambering the .50 Action Express cartridge.",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Desert_Eagle_.50_AE.jpg",
+  "specs": {
+    "caliber": ".50 Action Express",
+    "weight": "1.99 kg",
+    "length": "273 mm",
+    "action": "Gas-operated"
+  }
+}

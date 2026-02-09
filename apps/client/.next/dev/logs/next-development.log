@@ -1,3 +1,9 @@
-[00:00:01.979] Server  LOG     ✓ Ready in 1403ms
-[00:00:07.070] Server  ERROR   ⨯ TypeError: fetch failed
-[00:00:07.716] Browser ERROR   uncaughtError: TypeError: fetch failed
+[00:00:02.555] Server  LOG     ✓ Ready in 1935ms
+[00:00:14.698] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:14.783] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:17.559] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:19.385] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:20.898] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:22.624] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:57.596] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:02:28.694] Server  WARN    Error: Route "/wiki/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
