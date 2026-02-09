@@ -1,11 +1,11 @@
 import { Gun } from "@/types/gun";
 import Link from "next/link";
 
-// 1. This function runs on the SERVER, not the browser.
+
 async function getGuns(): Promise<Gun[]> {
-  // We fetch directly from the Backend API
+  
   const res = await fetch("http://127.0.0.1:4000/guns", {
-    cache: "no-store", // Ensures we always get fresh data (Dynamic Rendering)
+    cache: "no-store", 
   });
 
   if (!res.ok) {
@@ -15,7 +15,7 @@ async function getGuns(): Promise<Gun[]> {
   return res.json();
 }
 
-// 2. The Page Component
+
 export default async function Home() {
   const guns = await getGuns();
 

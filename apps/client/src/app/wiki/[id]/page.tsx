@@ -1,10 +1,9 @@
-import { Gun } from "../../../types/gun"; // <--- FIXED: Only 3 dots
+import { Gun } from "../../../types/gun"; 
 import Link from "next/link";
 
-// Fetch data for a single gun
 async function getGun(id: string): Promise<Gun | null> {
   try {
-    // FIXED: Using 127.0.0.1 instead of localhost
+   
     const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
       cache: "no-store",
     });
@@ -15,12 +14,12 @@ async function getGun(id: string): Promise<Gun | null> {
   }
 }
 
-// FIXED: params is now a Promise in Next.js 15+
+
 export default async function GunDetails(props: { params: Promise<{ id: string }> }) {
-  const params = await props.params; // <--- WE MUST AWAIT IT HERE
+  const params = await props.params; 
   const gun = await getGun(params.id);
 
-  // Error State
+  
   if (!gun) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
@@ -32,7 +31,7 @@ export default async function GunDetails(props: { params: Promise<{ id: string }
     );
   }
 
-  // Success State
+  
   return (
     <main className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-6xl mx-auto">
@@ -87,7 +86,7 @@ export default async function GunDetails(props: { params: Promise<{ id: string }
   );
 }
 
-// Helper Component for the table rows
+
 function SpecItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-b border-gray-700 pb-2 mr-4">
