@@ -1,6 +1,9 @@
 ### 1. GET ALL GUNS
 GET http://localhost:4000/guns
 
+### delete
+DELETE http://localhost:4000/guns
+
 ### 2. CREATE AK-47
 POST http://localhost:4000/guns
 Content-Type: application/json
@@ -9,7 +12,7 @@ Content-Type: application/json
   "name": "AK-47",
   "manufacturer": "Kalashnikov Concern",
   "description": "The most popular assault rifle in the world.",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/AK-47_type_II_Part_DM-ST-89-01131.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/AK47.jpg",
   "specs": {
     "caliber": "7.62x39mm",
     "weight": "3.47 kg",
@@ -25,7 +28,7 @@ Content-Type: application/json
   "name": "M4 Carbine",
   "manufacturer": "Colt Defense",
   "description": "The primary infantry weapon of the United States Armed Forces.",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/M4A1_ACOG.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/M4A1_ACOG_cal_5.56.jpg/800px-M4A1_ACOG_cal_5.56.jpg",
   "specs": {
     "caliber": "5.56x45mm NATO",
     "weight": "3.01 kg",
@@ -67,3 +70,21 @@ Content-Type: application/json
     "action": "Gas-operated"
   }
 }
+
+### UPDATE AK-47 IMAGE (TEST)
+POST http://localhost:4000/guns
+Content-Type: application/json
+
+{
+  "name": "AK-47 Test",
+  "manufacturer": "Kalashnikov",
+  "description": "Testing the image.",
+  "image_url": "https://placehold.co/600x400/png",
+  "specs": {
+    "caliber": "7.62",
+    "weight": "3.5kg",
+    "length": "800mm",
+    "action": "Gas"
+  }
+}
+
