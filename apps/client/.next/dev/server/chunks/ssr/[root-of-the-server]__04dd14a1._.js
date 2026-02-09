@@ -27,7 +27,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$cl
 // Fetch data for a single gun
 async function getGun(id) {
     try {
-        const res = await fetch(`http://localhost:4000/guns/${id}`, {
+        // FIXED: Using 127.0.0.1 instead of localhost
+        const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
             cache: "no-store"
         });
         if (!res.ok) return null;
@@ -36,7 +37,8 @@ async function getGun(id) {
         return null;
     }
 }
-async function GunDetails({ params }) {
+async function GunDetails(props) {
+    const params = await props.params; // <--- WE MUST AWAIT IT HERE
     const gun = await getGun(params.id);
     // Error State
     if (!gun) {
@@ -48,7 +50,7 @@ async function GunDetails({ params }) {
                     children: "Gun Not Found"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                    lineNumber: 24,
+                    lineNumber: 27,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -57,13 +59,13 @@ async function GunDetails({ params }) {
                     children: "← Back to Wiki"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                    lineNumber: 25,
+                    lineNumber: 28,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-            lineNumber: 23,
+            lineNumber: 26,
             columnNumber: 7
         }, this);
     }
@@ -79,7 +81,7 @@ async function GunDetails({ params }) {
                     children: "← Back to Collection"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                    lineNumber: 37,
+                    lineNumber: 40,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -93,12 +95,12 @@ async function GunDetails({ params }) {
                                 className: "w-full h-full object-cover"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                lineNumber: 47,
+                                lineNumber: 50,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                            lineNumber: 46,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -111,12 +113,12 @@ async function GunDetails({ params }) {
                                         children: gun.manufacturer
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                        lineNumber: 57,
+                                        lineNumber: 60,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                    lineNumber: 56,
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -124,7 +126,7 @@ async function GunDetails({ params }) {
                                     children: gun.name
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -132,7 +134,7 @@ async function GunDetails({ params }) {
                                     children: gun.description
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                    lineNumber: 64,
+                                    lineNumber: 67,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -143,7 +145,7 @@ async function GunDetails({ params }) {
                                             children: "Technical Specifications"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                            lineNumber: 70,
+                                            lineNumber: 73,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -154,7 +156,7 @@ async function GunDetails({ params }) {
                                                     value: gun.specs.caliber
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 74,
+                                                    lineNumber: 77,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -162,7 +164,7 @@ async function GunDetails({ params }) {
                                                     value: gun.specs.action
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 75,
+                                                    lineNumber: 78,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -170,7 +172,7 @@ async function GunDetails({ params }) {
                                                     value: gun.specs.weight
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 76,
+                                                    lineNumber: 79,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -178,42 +180,42 @@ async function GunDetails({ params }) {
                                                     value: gun.specs.length
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 80,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 76,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                    lineNumber: 69,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                            lineNumber: 55,
+                            lineNumber: 58,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                    lineNumber: 44,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-            lineNumber: 35,
+            lineNumber: 38,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-        lineNumber: 34,
+        lineNumber: 37,
         columnNumber: 5
     }, this);
 }
@@ -227,7 +229,7 @@ function SpecItem({ label, value }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                lineNumber: 91,
+                lineNumber: 94,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -235,13 +237,13 @@ function SpecItem({ label, value }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                lineNumber: 92,
+                lineNumber: 95,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-        lineNumber: 90,
+        lineNumber: 93,
         columnNumber: 5
     }, this);
 }

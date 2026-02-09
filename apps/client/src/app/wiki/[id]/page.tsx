@@ -1,10 +1,11 @@
-import { Gun } from "../../../types/gun";
+import { Gun } from "../../../types/gun"; // <--- FIXED: Only 3 dots
 import Link from "next/link";
 
 // Fetch data for a single gun
 async function getGun(id: string): Promise<Gun | null> {
   try {
-    const res = await fetch(`http://localhost:4000/guns/${id}`, {
+    // FIXED: Using 127.0.0.1 instead of localhost
+    const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) return null;
@@ -14,7 +15,9 @@ async function getGun(id: string): Promise<Gun | null> {
   }
 }
 
-export default async function GunDetails({ params }: { params: { id: string } }) {
+// FIXED: params is now a Promise in Next.js 15+
+export default async function GunDetails(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params; // <--- WE MUST AWAIT IT HERE
   const gun = await getGun(params.id);
 
   // Error State
