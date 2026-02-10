@@ -1,4 +1,4 @@
-"use client"; // <--- Required because we use 'useState' (interactivity)
+"use client"; 
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -18,9 +18,8 @@ export default function AddGun() {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Stop page from refreshing
+    e.preventDefault(); 
 
-    // Convert flat form data into the nested structure the Backend expects
     const payload = {
       name: formData.name,
       manufacturer: formData.manufacturer,
@@ -34,7 +33,6 @@ export default function AddGun() {
       },
     };
 
-    // Send the POST request to your Backend
     const res = await fetch("http://127.0.0.1:4000/guns", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,14 +40,13 @@ export default function AddGun() {
     });
 
     if (res.ok) {
-      router.push("/"); // Redirect to Home Page on success
-      router.refresh(); // Refresh data so the new gun shows up
+      router.push("/"); 
+      router.refresh(); 
     } else {
       alert("Failed to add gun!");
     }
   };
 
-  // Handle typing in the boxes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

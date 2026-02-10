@@ -20,17 +20,14 @@ export class GunsController {
   findOne(@Param('id') id: string) {
     return this.gunsService.findOne(id);
   }
-  // Make sure you import Headers and UnauthorizedException at the top!
-  // import { Controller, Get, Post, Body, Param, Delete, Headers, UnauthorizedException } from '@nestjs/common';
 
   @Delete(':id')
   remove(@Param('id') id: string, @Headers('admin-secret') secret: string) {
-    // 1. Check the password
+    
     if (secret !== 'MY_SUPER_SECRET_CODE_123') {
       throw new UnauthorizedException('Wrong password!');
     }
 
-    // 2. If password is correct, delete it
     return this.gunsService.delete(id);
   }
 }
