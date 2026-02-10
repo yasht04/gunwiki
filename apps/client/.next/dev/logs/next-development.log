@@ -1,3 +1,1 @@
-[00:00:03.447] Server  LOG     ✓ Ready in 2.7s
-[00:00:06.517] Server  ERROR   ⨯ TypeError: fetch failed
-[00:00:07.971] Browser ERROR   uncaughtError: TypeError: fetch failed
+[00:00:02.152] Server  LOG     ✓ Ready in 1533ms
