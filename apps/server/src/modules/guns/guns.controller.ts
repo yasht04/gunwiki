@@ -23,6 +23,8 @@ export class GunsController {
   deleteAll() {
     return this.gunsService.deleteAll();
   }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.gunsService.delete(id);
+  }
 }
-  
-  

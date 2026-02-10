@@ -18,6 +18,9 @@ export class GunsService {
   async deleteAll(): Promise<any> {
     return this.gunModel.deleteMany({}).exec();
   }
+  async delete(id: string): Promise<any> {
+  return this.gunModel.findByIdAndDelete(id).exec();
+}
   async findOne(id: string): Promise<Gun> {
     const gun = await this.gunModel.findById(id).exec();
     if (!gun) {
