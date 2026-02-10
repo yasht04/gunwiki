@@ -1,9 +1,8 @@
-import { Gun } from "../../../types/gun"; 
+import { Gun } from "../../../types/gun";
 import Link from "next/link";
-
+import DeleteButton from "../../../components/DeleteButton";
 async function getGun(id: string): Promise<Gun | null> {
   try {
-   
     const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
       cache: "no-store",
     });
@@ -14,12 +13,12 @@ async function getGun(id: string): Promise<Gun | null> {
   }
 }
 
-
-export default async function GunDetails(props: { params: Promise<{ id: string }> }) {
-  const params = await props.params; 
+export default async function GunDetails(props: {
+  params: Promise<{ id: string }>;
+}) {
+  const params = await props.params;
   const gun = await getGun(params.id);
 
-  
   if (!gun) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
@@ -31,13 +30,12 @@ export default async function GunDetails(props: { params: Promise<{ id: string }
     );
   }
 
-  
   return (
     <main className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
         >
           ← Back to Collection
@@ -60,12 +58,25 @@ export default async function GunDetails(props: { params: Promise<{ id: string }
                 {gun.manufacturer}
               </span>
             </div>
-            
-            <h1 className="text-6xl font-bold mb-6 tracking-tight">{gun.name}</h1>
-            
+
+            <h1 className="text-6xl font-bold mb-6 tracking-tight">
+              {gun.name}
+            </h1>
+
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               {gun.description}
             </p>
+
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              {gun.description}
+            </p>
+
+            {/* NEW: Action Buttons */}
+            <div className="flex gap-4 mb-8">
+              <DeleteButton id={gun._id} />
+            </div>
+
+            {/* Tech Specs Table (existing code) */}
 
             {/* Tech Specs Table */}
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
@@ -86,11 +97,12 @@ export default async function GunDetails(props: { params: Promise<{ id: string }
   );
 }
 
-
 function SpecItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-b border-gray-700 pb-2 mr-4">
-      <span className="block text-gray-500 text-xs uppercase mb-1">{label}</span>
+      <span className="block text-gray-500 text-xs uppercase mb-1">
+        {label}
+      </span>
       <span className="text-lg font-medium text-white">{value}</span>
     </div>
   );
