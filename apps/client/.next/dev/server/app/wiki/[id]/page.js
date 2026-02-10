@@ -1,6 +1,6 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/wiki/[id]/page.js")
 R.c("server/chunks/ssr/bfac2_next_dist_5aef5fba._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__04dd14a1._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__842a7742._.js")
 R.c("server/chunks/ssr/bfac2_7b811571._.js")
 R.c("server/chunks/ssr/[externals]__e8a2741f._.js")
 R.c("server/chunks/ssr/Desktop_GUN_apps_client_src_app_c6d82c70._.js")

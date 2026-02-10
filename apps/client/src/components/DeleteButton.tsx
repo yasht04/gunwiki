@@ -1,4 +1,4 @@
-"use client";   
+"use client";
 
 import { useRouter } from "next/navigation";
 
@@ -6,16 +6,25 @@ export default function DeleteButton({ id }: { id: string }) {
   const router = useRouter();
 
   const handleDelete = async () => {
-    const confirmed = confirm("Are you sure you want to delete this gun?");
+    // 1. Ask for the password
+    const password = prompt("🔐 Enter Admin Password to delete this gun:");
+    
+    if (!password) return; // If they hit Cancel, stop everything.
 
-    if (confirmed) {
-      await fetch(`http://127.0.0.1:4000/guns/${id}`, {
-        method: "DELETE",
-      });
+    // 2. Send the DELETE request WITH the password in the headers
+    const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
+      method: "DELETE",
+      headers: {
+        "admin-secret": password // <--- This is the key!
+      }
+    });
 
-      alert("Gun deleted!");
-      router.push("/"); 
-      router.refresh(); 
+    if (res.ok) {
+      alert("✅ Gun deleted successfully!");
+      router.push("/"); // Go back home
+      router.refresh(); // Refresh the list
+    } else {
+      alert("❌ WRONG PASSWORD! Access Denied.");
     }
   };
 
