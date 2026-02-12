@@ -1,4 +1,3 @@
-// import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { Controller, Get, Post, Body, Param, Headers, UnauthorizedException } from '@nestjs/common';
 import { GunsService } from './guns.service';
 import { Delete } from '@nestjs/common';
@@ -7,7 +6,10 @@ export class GunsController {
   constructor(private readonly gunsService: GunsService) {}
 
   @Post()
-  create(@Body() createGunDto: any) {
+  create(@Body() createGunDto: any, @Headers('admin-secret') secret: string) {
+    if (secret !== 'Viper') {
+       throw new UnauthorizedException('Wrong password!'); 
+    }
     return this.gunsService.create(createGunDto);
   }
 
@@ -24,7 +26,7 @@ export class GunsController {
   @Delete(':id')
   remove(@Param('id') id: string, @Headers('admin-secret') secret: string) {
     
-    if (secret !== 'MY_SUPER_SECRET_CODE_123') {
+    if (secret !== 'Viper') {
       throw new UnauthorizedException('Wrong password!');
     }
 
