@@ -18,9 +18,14 @@ export default function AddGun() {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
+
+    // 1. Ask for Password
+    const password = prompt("🔐 Enter Admin Password to add a gun:");
+    if (!password) return; // Stop if they cancel
 
     const payload = {
+      // ... keep your existing payload code here ...
       name: formData.name,
       manufacturer: formData.manufacturer,
       description: formData.description,
@@ -33,17 +38,21 @@ export default function AddGun() {
       },
     };
 
+    // 2. Send with Password Header
     const res = await fetch("http://127.0.0.1:4000/guns", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "admin-secret": password // <--- The Secret Key
+      },
       body: JSON.stringify(payload),
     });
 
     if (res.ok) {
-      router.push("/"); 
-      router.refresh(); 
+      router.push("/");
+      router.refresh();
     } else {
-      alert("Failed to add gun!");
+      alert("❌ ACCESS DENIED: Wrong Password!");
     }
   };
 
