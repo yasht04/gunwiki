@@ -71,10 +71,19 @@ export default async function GunDetails(props: {
               {gun.description}
             </p>
 
-            {/* NEW: Action Buttons */}
-            <div className="flex gap-4 mb-8">
-              <DeleteButton id={gun._id} />
-            </div>
+            {/* Action Buttons */}
+          <div className="flex gap-4 mb-8">
+             {/* EDIT BUTTON (Yellow) */}
+             <Link 
+               href={`/wiki/${gun._id}/edit`}
+               className="bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-yellow-500/30 flex items-center gap-2"
+             >
+               ✎ Edit Gun
+             </Link>
+
+             {/* Existing Delete Button */}
+             <DeleteButton id={gun._id} />
+          </div>
 
             {/* Tech Specs Table (existing code) */}
 
