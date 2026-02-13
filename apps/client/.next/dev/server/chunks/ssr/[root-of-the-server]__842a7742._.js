@@ -181,17 +181,28 @@ async function GunDetails(props) {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex gap-4 mb-8",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$src$2f$components$2f$DeleteButton$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                        id: gun._id
-                                    }, void 0, false, {
-                                        fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                        lineNumber: 76,
-                                        columnNumber: 15
-                                    }, this)
-                                }, void 0, false, {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                                            href: `/wiki/${gun._id}/edit`,
+                                            className: "bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-yellow-500/30 flex items-center gap-2",
+                                            children: "✎ Edit Gun"
+                                        }, void 0, false, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
+                                            lineNumber: 77,
+                                            columnNumber: 14
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$src$2f$components$2f$DeleteButton$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                                            id: gun._id
+                                        }, void 0, false, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
+                                            lineNumber: 85,
+                                            columnNumber: 14
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
                                     lineNumber: 75,
-                                    columnNumber: 13
+                                    columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "bg-gray-800 rounded-xl p-6 border border-gray-700",
@@ -201,7 +212,7 @@ async function GunDetails(props) {
                                             children: "Technical Specifications"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 92,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -212,7 +223,7 @@ async function GunDetails(props) {
                                                     value: gun.specs.caliber
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 87,
+                                                    lineNumber: 96,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -220,7 +231,7 @@ async function GunDetails(props) {
                                                     value: gun.specs.action
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 88,
+                                                    lineNumber: 97,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -228,7 +239,7 @@ async function GunDetails(props) {
                                                     value: gun.specs.weight
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 89,
+                                                    lineNumber: 98,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(SpecItem, {
@@ -236,19 +247,19 @@ async function GunDetails(props) {
                                                     value: gun.specs.length
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                                    lineNumber: 90,
+                                                    lineNumber: 99,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 95,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 91,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -284,7 +295,7 @@ function SpecItem({ label, value }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                lineNumber: 103,
+                lineNumber: 112,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -292,13 +303,13 @@ function SpecItem({ label, value }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-                lineNumber: 106,
+                lineNumber: 115,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/GUN/apps/client/src/app/wiki/[id]/page.tsx",
-        lineNumber: 102,
+        lineNumber: 111,
         columnNumber: 5
     }, this);
 }

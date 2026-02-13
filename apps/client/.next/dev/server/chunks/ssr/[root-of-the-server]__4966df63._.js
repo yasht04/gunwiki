@@ -38,20 +38,18 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$cl
 function DeleteButton({ id }) {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const handleDelete = async ()=>{
-        // 1. Ask for the password
         const password = prompt("🔐 Enter Admin Password to delete this gun:");
-        if (!password) return; // If they hit Cancel, stop everything.
-        // 2. Send the DELETE request WITH the password in the headers
+        if (!password) return;
         const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
             method: "DELETE",
             headers: {
-                "admin-secret": password // <--- This is the key!
+                "admin-secret": password
             }
         });
         if (res.ok) {
             alert("✅ Gun deleted successfully!");
-            router.push("/"); // Go back home
-            router.refresh(); // Refresh the list
+            router.push("/");
+            router.refresh();
         } else {
             alert("❌ WRONG PASSWORD! Access Denied.");
         }
@@ -62,7 +60,7 @@ function DeleteButton({ id }) {
         children: "Delete Gun"
     }, void 0, false, {
         fileName: "[project]/Desktop/GUN/apps/client/src/components/DeleteButton.tsx",
-        lineNumber: 32,
+        lineNumber: 30,
         columnNumber: 5
     }, this);
 }
