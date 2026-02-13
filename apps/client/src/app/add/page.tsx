@@ -9,6 +9,7 @@ export default function AddGun() {
   const [formData, setFormData] = useState({
     name: "",
     manufacturer: "",
+    category: "Assault Rifle", // Default value
     description: "",
     image_url: "",
     caliber: "",
@@ -17,17 +18,19 @@ export default function AddGun() {
     action: "",
   });
 
+  const categories = ["Assault Rifle", "Pistol", "Sniper", "SMG", "Shotgun", "LMG", "Heavy"];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
+    // 1. Ask for Password
     const password = prompt("🔐 Enter Admin Password to add a gun:");
     if (!password) return; 
 
     const payload = {
-    
       name: formData.name,
       manufacturer: formData.manufacturer,
+      category: formData.category, // <--- SENDING CATEGORY NOW
       description: formData.description,
       image_url: formData.image_url,
       specs: {
@@ -55,7 +58,7 @@ export default function AddGun() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -63,13 +66,29 @@ export default function AddGun() {
     <main className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Add New Gun</h1>
-
+        
         <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-2xl">
-
+          
           {/* Basic Info Section */}
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-blue-400 border-b border-gray-700 pb-2">Basic Information</h2>
-            <input name="name" placeholder="Gun Name (e.g. AK-47)" required onChange={handleChange} className="w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors" />
+            
+            <div className="grid grid-cols-2 gap-4">
+              <input name="name" placeholder="Gun Name" required onChange={handleChange} className="bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors" />
+              
+              {/* NEW CATEGORY DROPDOWN */}
+              <select 
+                name="category" 
+                value={formData.category} 
+                onChange={handleChange}
+                className="bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
+              >
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+
             <input name="manufacturer" placeholder="Manufacturer" required onChange={handleChange} className="w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors" />
             <input name="image_url" placeholder="Image URL (http://...)" required onChange={handleChange} className="w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors" />
             <textarea name="description" placeholder="Description" rows={3} required onChange={handleChange} className="w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors" />
