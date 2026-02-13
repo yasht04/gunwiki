@@ -1,1 +1,222 @@
-[00:00:01.413] Server  LOG     ✓ Ready in 1003ms
+[00:00:01.383] Server  LOG     ✓ Ready in 1005ms
+[00:00:21.849] Server  ERROR   ⨯ ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+
+[00:00:22.258] Browser ERROR   ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+[00:00:22.273] Server  ERROR   ⨯ ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+
+[00:00:22.416] Browser ERROR   uncaughtError: Error: ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+
+[00:00:22.583] Browser ERROR   ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+[00:00:22.583] Browser ERROR   ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+[00:00:24.129] Server  ERROR   ⨯ ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+
+[00:00:24.233] Browser ERROR   uncaughtError: Error: ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+
+[00:00:24.379] Browser ERROR   ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+[00:00:24.379] Browser ERROR   ./Desktop/GUN/apps/client/src/app/add/page.tsx:7:14
+Ecmascript file had an error
+   5 | import Link from "next/link";
+   6 | // Inside apps/client/src/app/add/page.tsx
+>  7 | export const metadata = {
+     |              ^^^^^^^^
+   8 |   title: "Add New Gun | Gun Wiki",
+   9 | };
+  10 | export default function AddGun() {
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Client Component SSR]
+    ./Desktop/GUN/apps/client/src/app/add/page.tsx [Server Component]
+[00:01:29.197] Server  LOG     ✓ Compiled in 87ms

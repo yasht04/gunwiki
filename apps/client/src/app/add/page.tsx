@@ -118,5 +118,6 @@ export default function AddGun() {
         </form>
       </div>
     </main>
+    
   );
 }
