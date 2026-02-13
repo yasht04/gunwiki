@@ -10,7 +10,7 @@ export class Gun {
 
   @Prop()
   manufacturer: string;
-
+  @Prop() category: string;
   @Prop()
   description: string;
 
