@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Headers, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Headers, UnauthorizedException, Put } from '@nestjs/common';
 import { GunsService } from './guns.service';
 import { Delete } from '@nestjs/common';
 @Controller('guns')
@@ -12,7 +12,15 @@ export class GunsController {
     }
     return this.gunsService.create(createGunDto);
   }
+  // Import 'Put' at the top: import { ..., Put } from '@nestjs/common';
 
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateGunDto: any, @Headers('admin-secret') secret: string) {
+    if (secret !== 'MY_SUPER_SECRET_CODE_123') {
+      throw new UnauthorizedException('Wrong password!');
+    }
+    return this.gunsService.update(id, updateGunDto);
+  }
   @Get()
   findAll() {
     return this.gunsService.findAll();

@@ -21,6 +21,10 @@ export class GunsService {
   async delete(id: string): Promise<any> {
   return this.gunModel.findByIdAndDelete(id).exec();
 }
+
+  async update(id: string, gun: any): Promise<any> {
+    return this.gunModel.findByIdAndUpdate(id, gun, { new: true }).exec();
+  }
   async findOne(id: string): Promise<Gun> {
     const gun = await this.gunModel.findById(id).exec();
     if (!gun) {

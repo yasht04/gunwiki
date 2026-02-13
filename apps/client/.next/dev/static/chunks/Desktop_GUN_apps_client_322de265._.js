@@ -22,6 +22,7 @@ function AddGun() {
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         name: "",
         manufacturer: "",
+        category: "Assault Rifle",
         description: "",
         image_url: "",
         caliber: "",
@@ -29,15 +30,24 @@ function AddGun() {
         length: "",
         action: ""
     });
+    const categories = [
+        "Assault Rifle",
+        "Pistol",
+        "Sniper",
+        "SMG",
+        "Shotgun",
+        "LMG",
+        "Heavy"
+    ];
     const handleSubmit = async (e)=>{
         e.preventDefault();
         // 1. Ask for Password
         const password = prompt("🔐 Enter Admin Password to add a gun:");
-        if (!password) return; // Stop if they cancel
+        if (!password) return;
         const payload = {
-            // ... keep your existing payload code here ...
             name: formData.name,
             manufacturer: formData.manufacturer,
+            category: formData.category,
             description: formData.description,
             image_url: formData.image_url,
             specs: {
@@ -47,12 +57,11 @@ function AddGun() {
                 action: formData.action
             }
         };
-        // 2. Send with Password Header
         const res = await fetch("http://127.0.0.1:4000/guns", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "admin-secret": password // <--- The Secret Key
+                "admin-secret": password
             },
             body: JSON.stringify(payload)
         });
@@ -79,7 +88,7 @@ function AddGun() {
                     children: "Add New Gun"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                    lineNumber: 66,
+                    lineNumber: 68,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -94,18 +103,45 @@ function AddGun() {
                                     children: "Basic Information"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 72,
+                                    lineNumber: 74,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                    name: "name",
-                                    placeholder: "Gun Name (e.g. AK-47)",
-                                    required: true,
-                                    onChange: handleChange,
-                                    className: "w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
-                                }, void 0, false, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "grid grid-cols-2 gap-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            name: "name",
+                                            placeholder: "Gun Name",
+                                            required: true,
+                                            onChange: handleChange,
+                                            className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
+                                        }, void 0, false, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
+                                            lineNumber: 77,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                            name: "category",
+                                            value: formData.category,
+                                            onChange: handleChange,
+                                            className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors",
+                                            children: categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: cat,
+                                                    children: cat
+                                                }, cat, false, {
+                                                    fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
+                                                    lineNumber: 87,
+                                                    columnNumber: 19
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
+                                            lineNumber: 80,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 76,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -116,7 +152,7 @@ function AddGun() {
                                     className: "w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 92,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -127,7 +163,7 @@ function AddGun() {
                                     className: "w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 75,
+                                    lineNumber: 93,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -139,13 +175,13 @@ function AddGun() {
                                     className: "w-full bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 94,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                            lineNumber: 71,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -156,7 +192,7 @@ function AddGun() {
                                     children: "Technical Specs"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 99,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -170,7 +206,7 @@ function AddGun() {
                                             className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 101,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -181,7 +217,7 @@ function AddGun() {
                                             className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                            lineNumber: 84,
+                                            lineNumber: 102,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -192,7 +228,7 @@ function AddGun() {
                                             className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                            lineNumber: 85,
+                                            lineNumber: 103,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -203,19 +239,19 @@ function AddGun() {
                                             className: "bg-gray-700 p-3 rounded text-white border border-gray-600 focus:border-blue-500 outline-none transition-colors"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 104,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 100,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                            lineNumber: 80,
+                            lineNumber: 98,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -227,7 +263,7 @@ function AddGun() {
                                     children: "Add Gun"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 110,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -236,34 +272,34 @@ function AddGun() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 113,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                            lineNumber: 91,
+                            lineNumber: 109,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-                    lineNumber: 68,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-            lineNumber: 65,
+            lineNumber: 67,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/GUN/apps/client/src/app/add/page.tsx",
-        lineNumber: 64,
+        lineNumber: 66,
         columnNumber: 5
     }, this);
 }
-_s(AddGun, "VP3HDNuWRwk0SyAPXqblxaDaLVc=", false, function() {
+_s(AddGun, "3HgoD/HGX0mkIONVum4VWJoWthg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
