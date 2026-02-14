@@ -141,6 +141,8 @@
 
 @layer theme {
   :root, :host {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-red-500: #fb2c36;
     --color-red-600: #e40014;
     --color-red-700: #bf000f;
@@ -198,8 +200,8 @@
     --blur-md: 12px;
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    --default-font-family: var(--font-geist-sans);
-    --default-mono-font-family: var(--font-geist-mono);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
   }
 
   @supports (color: lab(0% 0 0)) {
@@ -1258,125 +1260,93 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:border-gray-600 {
-      border-color: var(--color-gray-600);
+  .dark\:border-gray-600:where(.dark, .dark *) {
+    border-color: var(--color-gray-600);
+  }
+
+  .dark\:border-gray-700:where(.dark, .dark *) {
+    border-color: var(--color-gray-700);
+  }
+
+  .dark\:border-white\/20:where(.dark, .dark *) {
+    border-color: #fff3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:border-white\/20:where(.dark, .dark *) {
+      border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:border-gray-700 {
-      border-color: var(--color-gray-700);
+  .dark\:bg-black\/50:where(.dark, .dark *) {
+    background-color: #00000080;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:bg-black\/50:where(.dark, .dark *) {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:border-white\/20 {
-      border-color: #fff3;
-    }
+  .dark\:bg-gray-700:where(.dark, .dark *) {
+    background-color: var(--color-gray-700);
+  }
 
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:border-white\/20 {
-        border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-      }
+  .dark\:bg-gray-800:where(.dark, .dark *) {
+    background-color: var(--color-gray-800);
+  }
+
+  .dark\:bg-gray-800\/50:where(.dark, .dark *) {
+    background-color: #1e293980;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:bg-gray-800\/50:where(.dark, .dark *) {
+      background-color: color-mix(in oklab, var(--color-gray-800) 50%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-black\/50 {
-      background-color: #00000080;
-    }
+  .dark\:bg-gray-900:where(.dark, .dark *) {
+    background-color: var(--color-gray-900);
+  }
 
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:bg-black\/50 {
-        background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
-      }
+  .dark\:from-blue-400:where(.dark, .dark *) {
+    --tw-gradient-from: var(--color-blue-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
+  .dark\:to-emerald-400:where(.dark, .dark *) {
+    --tw-gradient-to: var(--color-emerald-400);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+
+  .dark\:text-gray-400:where(.dark, .dark *) {
+    color: var(--color-gray-400);
+  }
+
+  .dark\:text-white:where(.dark, .dark *) {
+    color: var(--color-white);
+  }
+
+  .dark\:text-yellow-400:where(.dark, .dark *) {
+    color: var(--color-yellow-400);
+  }
+
+  @media (hover: hover) {
+    .dark\:group-hover\:text-blue-400:where(.dark, .dark *):is(:where(.group):hover *) {
+      color: var(--color-blue-400);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-gray-700 {
+  @media (hover: hover) {
+    .dark\:hover\:bg-gray-700:where(.dark, .dark *):hover {
       background-color: var(--color-gray-700);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-gray-800 {
-      background-color: var(--color-gray-800);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-gray-800\/50 {
-      background-color: #1e293980;
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:bg-gray-800\/50 {
-        background-color: color-mix(in oklab, var(--color-gray-800) 50%, transparent);
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-gray-900 {
-      background-color: var(--color-gray-900);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:from-blue-400 {
-      --tw-gradient-from: var(--color-blue-400);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:to-emerald-400 {
-      --tw-gradient-to: var(--color-emerald-400);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:text-gray-400 {
-      color: var(--color-gray-400);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:text-white {
+  @media (hover: hover) {
+    .dark\:hover\:text-white:where(.dark, .dark *):hover {
       color: var(--color-white);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:text-yellow-400 {
-      color: var(--color-yellow-400);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:group-hover\:text-blue-400:is(:where(.group):hover *) {
-        color: var(--color-blue-400);
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:hover\:bg-gray-700:hover {
-        background-color: var(--color-gray-700);
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:hover\:text-white:hover {
-        color: var(--color-white);
-      }
     }
   }
 }
@@ -1386,11 +1356,9 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {

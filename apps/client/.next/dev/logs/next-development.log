@@ -1,1 +1,24 @@
-[00:00:01.402] Server  LOG     ✓ Ready in 1008ms
+[00:00:01.349] Server  LOG     ✓ Ready in 965ms
+[00:00:14.956] Server  LOG     ✓ Compiled in 81ms
+[00:05:57.693] Server  LOG     ✓ Compiled in 32ms
+[00:05:57.991] Browser ERROR   ./Desktop/GUN/apps/client/src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: C:\Users\Acer\Desktop\GUN\apps\client\src\app\globals.css:1:1: Unclosed comment
+    [at Input.error (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/input.js:135:16)]
+    [at unclosed (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/tokenize.js:45:17)]
+    [at Object.nextToken (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/tokenize.js:228:15)]
+    [at Parser.parse (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/parser.js:444:30)]
+    [at parse (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/parse.js:11:12)]
+    [at new LazyResult (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/lazy-result.js:165:16)]
+    [at Processor.process (turbopack:///[project]/Desktop/GUN/apps/client/node_modules/postcss/lib/processor.js:53:14)]
+    [at transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:51)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:29)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:115:11)]
+
+Import trace:
+  Client Component Browser:
+    ./Desktop/GUN/apps/client/src/app/globals.css [Client Component Browser]
+    ./Desktop/GUN/apps/client/src/app/layout.tsx [Server Component]
+[00:06:00.863] Server  LOG     ✓ Compiled in 51ms
+[00:06:13.683] Server  LOG     ✓ Compiled in 103ms
+[00:07:39.026] Server  LOG     ✓ Compiled in 64ms
