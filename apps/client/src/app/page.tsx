@@ -17,7 +17,7 @@ export default async function Home() {
   const guns = await getGuns();
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white p-8">
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* All the UI logic is now handled inside GunGallery */}
         <GunGallery initialGuns={guns} />
