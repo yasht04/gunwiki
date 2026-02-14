@@ -1,4 +1,2 @@
-[00:00:02.294] Server  LOG     ✓ Ready in 1751ms
-[00:08:21.683] Server  LOG     ✓ Compiled in 547ms
-[00:09:08.856] Server  ERROR   ⨯ ReferenceError: Link is not defined
-[00:09:09.134] Browser ERROR   uncaughtError: ReferenceError: Link is not defined
+[00:00:01.435] Server  LOG     ✓ Ready in 1047ms
+[00:04:32.073] Server  LOG     ✓ Compiled in 494ms
