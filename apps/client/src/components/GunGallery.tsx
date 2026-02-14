@@ -1,4 +1,4 @@
-"use client"; // Needs to be client-side for search to work
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -12,16 +12,11 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // The list of categories we want to show buttons for
-  const categories = ["All", "Assault Rifle", "Pistol", "Sniper", "SMG", "Heavy"];
+  const categories = ["All", "Assault Rifle", "Pistol", "Sniper", "SMG", "Shotgun", "LMG", "Heavy"];
 
-  // 1. FILTER LOGIC
+  // FILTER LOGIC
   const filteredGuns = initialGuns.filter((gun) => {
-    // Check if name matches search
     const matchesSearch = gun.name.toLowerCase().includes(search.toLowerCase());
-    
-    // Check if category matches (or if "All" is selected)
-    // Note: We use "||" to handle old guns that don't have a category yet
     const gunCategory = gun.category || "Uncategorized";
     const matchesCategory = activeCategory === "All" || gunCategory === activeCategory;
 
@@ -30,34 +25,49 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
 
   return (
     <div>
-      {/* SEARCH BAR & FILTERS */}
-      <div className="mb-12 space-y-6">
+      {/* --- NEW HEADER SECTION --- */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8 bg-gray-800/50 p-6 rounded-2xl border border-gray-700 backdrop-blur-sm">
         
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="🔍 Search guns..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-white text-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-        />
+        {/* LEFT: Logo */}
+        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 whitespace-nowrap">
+          Gun Wiki
+        </h1>
 
-        {/* Category Buttons */}
-        <div className="flex flex-wrap gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full font-bold transition-all ${
-                activeCategory === cat
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
-                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* MIDDLE: Search Bar (Now centered!) */}
+        <div className="w-full max-w-xl">
+          <input
+            type="text"
+            placeholder="🔍 Search guns..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full p-3 rounded-xl bg-gray-900 border border-gray-600 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-inner"
+          />
         </div>
+
+        {/* RIGHT: Add Button */}
+        <Link 
+          href="/add" 
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 whitespace-nowrap"
+        >
+          <span className="text-xl">+</span> Add Gun
+        </Link>
+      </div>
+
+      {/* CATEGORY TABS */}
+      <div className="flex flex-wrap gap-2 mb-8 justify-center">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-4 py-2 rounded-full font-bold transition-all text-sm ${
+              activeCategory === cat
+                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
+                : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
       {/* GRID DISPLAY */}
@@ -68,7 +78,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
             key={gun._id}
             className="group block bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 border border-gray-700"
           >
-            {/* Image */}
             <div className="relative h-64 overflow-hidden bg-gray-900">
               <img
                 src={gun.image_url}
@@ -82,7 +91,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               </div>
             </div>
 
-            {/* Content */}
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">
                 {gun.name}
