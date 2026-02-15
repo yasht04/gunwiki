@@ -119,7 +119,6 @@
 //     </div>
 //   );
 // }
-
 "use client";
 
 import { useState } from "react";
@@ -142,112 +141,86 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
     const matchesSearch = gun.name.toLowerCase().includes(search.toLowerCase());
     const gunCategory = gun.category || "Uncategorized";
     const matchesCategory = activeCategory === "All" || gunCategory === activeCategory;
+
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div className="space-y-8">
+    <div className="relative z-10"> {/* z-10 to sit above vignette */}
       
-      {/* --- HUD HEADER --- */}
-      <div className="sticky top-4 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md p-4 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* --- HEADER: The "Riddler" Terminal Look --- */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 border-b-2 border-vengeance pb-8">
+        
+        {/* LOGO: Big, Red, and Brutal */}
+        <h1 className="text-5xl font-black uppercase tracking-widest text-vengeance drop-shadow-[0_0_10px_rgba(225,11,22,0.8)]">
+          GUN_WIKI
+        </h1>
+
+        {/* SEARCH & FILTER GROUP */}
+        <div className="flex flex-col md:flex-row w-full max-w-3xl gap-4">
           
-          {/* 1. LOGO AREA */}
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-10 bg-blue-600 rounded-full"></div> {/* Accent Bar */}
-            <h1 className="text-2xl font-black tracking-tighter uppercase italic text-gray-900 dark:text-white">
-              Gun<span className="text-blue-600">Wiki</span>
-            </h1>
-          </div>
+          {/* CATEGORY SELECTOR (Square corners) */}
+          <select
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            className="p-4 bg-black border-2 border-gray-700 text-vengeance font-bold uppercase tracking-wider focus:border-vengeance focus:outline-none focus:shadow-[0_0_15px_rgba(225,11,22,0.3)]"
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>{cat.toUpperCase()}</option>
+            ))}
+          </select>
 
-          {/* 2. UNIFIED SEARCH BAR (The "Command Center") */}
-          <div className="flex w-full max-w-2xl bg-gray-100 dark:bg-gray-800 rounded-2xl p-1 border border-gray-200 dark:border-gray-700 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
-            
-            {/* Category Select (Left Side) */}
-            <select
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
-              className="bg-transparent text-gray-700 dark:text-gray-300 font-bold px-4 py-2 text-sm outline-none cursor-pointer hover:text-blue-500 transition-colors border-r border-gray-300 dark:border-gray-600"
-            >
-              {categories.map((cat) => (
-                <option key={cat} value={cat} className="bg-white dark:bg-gray-800">
-                  {cat}
-                </option>
-              ))}
-            </select>
-
-            {/* Search Input (Right Side) */}
+          {/* SEARCH BAR (Terminal Input) */}
+          <div className="relative w-full">
             <input
               type="text"
-              placeholder="Search database..."
+              placeholder="INITIALIZE_SEARCH..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 bg-transparent px-4 py-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none font-medium"
+              className="w-full p-4 bg-black border-2 border-gray-700 text-white placeholder-gray-600 font-mono uppercase focus:border-vengeance focus:outline-none focus:shadow-[0_0_15px_rgba(225,11,22,0.3)]"
             />
-            
-            {/* Search Icon (Visual only) */}
-            <div className="pr-4 flex items-center text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
           </div>
+        </div>
 
-          {/* 3. ACTION BUTTONS */}
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            
-            <Link 
-              href="/add" 
-              className="group relative bg-gray-900 dark:bg-white text-white dark:text-black font-bold py-3 px-6 rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl"
-            >
-              <div className="absolute inset-0 bg-blue-600 mix-blend-multiply opacity-0 group-hover:opacity-20 transition-opacity" />
-              <span className="flex items-center gap-2">
-                <span>+</span> New Entry
-              </span>
-            </Link>
-          </div>
-
+        {/* ACTION BUTTONS */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <Link 
+            href="/add" 
+            className="bg-vengeance hover:bg-vengeance-dark text-black hover:text-white font-black py-4 px-8 uppercase tracking-widest transition-all hover:shadow-[0_0_20px_rgba(225,11,22,0.6)]"
+          >
+            + ACCESS
+          </Link>
         </div>
       </div>
 
       {/* --- GRID DISPLAY --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredGuns.map((gun) => (
           <Link
             href={`/wiki/${gun._id}`}
             key={gun._id}
-            className="group relative bg-white dark:bg-gray-900 rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+            className="group block bg-concrete border border-gray-800 hover:border-vengeance transition-all duration-300 relative overflow-hidden"
           >
-            {/* Image Container */}
-            <div className="aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-gray-800 relative">
+            {/* Image Area with "Red Overlay" on hover */}
+            <div className="relative h-64 bg-black overflow-hidden">
+              <div className="absolute inset-0 bg-vengeance opacity-0 group-hover:opacity-20 transition-opacity z-10 mix-blend-multiply"></div>
               <img
                 src={gun.image_url}
                 alt={gun.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110"
               />
-              
-              {/* Category Badge (Floating) */}
-              <div className="absolute bottom-3 left-3">
-                <span className="bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
-                  {gun.category || "Unknown"}
-                </span>
+              <div className="absolute top-0 right-0 bg-vengeance text-black font-bold px-3 py-1 text-xs uppercase tracking-wider">
+                {gun.category || "UNKNOWN"}
               </div>
             </div>
 
-            {/* Info Area */}
-            <div className="p-5">
-              <div className="flex justify-between items-start mb-2">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {gun.name}
-                </h2>
-                {/* Manufacturer Tag */}
-                <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 border border-gray-200 dark:border-gray-700 px-2 py-1 rounded">
-                  {gun.manufacturer || "N/A"}
-                </span>
-              </div>
-              
-              <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed">
+            {/* Content Area */}
+            <div className="p-6 border-t-2 border-gray-800 group-hover:border-vengeance">
+              <h2 className="text-2xl font-black text-white group-hover:text-vengeance uppercase tracking-wide mb-2">
+                {gun.name}
+              </h2>
+              <p className="text-gray-500 font-mono text-sm line-clamp-2 uppercase">
                 {gun.description}
               </p>
             </div>
@@ -255,15 +228,14 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
         ))}
       </div>
 
-      {/* NO RESULTS STATE */}
+      {/* NO RESULTS */}
       {filteredGuns.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-24 text-center opacity-50">
-          <div className="text-6xl mb-4">🕵️‍♂️</div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">No matches found</h3>
-          <p className="text-gray-500">Try adjusting your search or category filter.</p>
+        <div className="text-center py-20">
+          <p className="text-2xl text-vengeance font-bold uppercase tracking-widest animate-pulse">
+            NO_DATA_FOUND
+          </p>
         </div>
       )}
-
     </div>
   );
 }
