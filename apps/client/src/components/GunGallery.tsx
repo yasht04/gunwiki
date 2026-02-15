@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Gun } from "../types/gun";
-import ThemeToggle from "./ThemeToggle"; // <--- Import the toggle
+import ThemeToggle from "./ThemeToggle";
 
 interface GunGalleryProps {
   initialGuns: Gun[];
@@ -26,55 +26,53 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
 
   return (
     <div>
-      {/* --- HEADER SECTION --- */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 bg-white dark:bg-gray-800/50 p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl backdrop-blur-sm transition-colors duration-300">
+      {/* --- HEADER ISLAND --- */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl backdrop-blur-sm transition-colors duration-300">
         
         {/* LEFT: Logo */}
-        <div className="flex items-center gap-4">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-400 dark:from-blue-400 dark:to-emerald-400 whitespace-nowrap">
+        <div className="flex items-center">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-400 dark:from-blue-400 dark:to-emerald-400 whitespace-nowrap">
             Gun Wiki
           </h1>
         </div>
 
-        {/* MIDDLE: Search Bar */}
-        <div className="w-full max-w-xl">
+        {/* MIDDLE: Search & Filter Group */}
+        <div className="flex flex-1 w-full max-w-2xl gap-2">
+          
+          {/* CATEGORY DROPDOWN */}
+          <select
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            className="p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all cursor-pointer font-medium"
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+
+          {/* SEARCH BAR */}
           <input
             type="text"
             placeholder="🔍 Search guns..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-inner placeholder-gray-500"
+            className="flex-1 w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-inner placeholder-gray-500"
           />
         </div>
 
         {/* RIGHT: Actions */}
         <div className="flex items-center gap-3">
-          <ThemeToggle /> {/* <--- The Toggle Button is here! */}
+          <ThemeToggle />
           
           <Link 
             href="/add" 
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 whitespace-nowrap"
           >
-            <span className="text-xl">+</span> Add Gun
+            <span className="text-xl">+</span> <span className="hidden md:inline">Add Gun</span>
           </Link>
         </div>
-      </div>
-
-      {/* CATEGORY TABS */}
-      <div className="flex flex-wrap gap-2 mb-8 justify-center">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-full font-bold transition-all text-sm border ${
-              activeCategory === cat
-                ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/30"
-                : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
       </div>
 
       {/* GRID DISPLAY */}
