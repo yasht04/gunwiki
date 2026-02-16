@@ -1,6 +1,7 @@
 import { Gun } from "../../../types/gun";
 import Link from "next/link";
 import DeleteButton from "../../../components/DeleteButton";
+import CompareButton from "../../../components/CompareButton";
 async function getGun(id: string): Promise<Gun | null> {
   try {
     const res = await fetch(`http://127.0.0.1:4000/guns/${id}`, {
@@ -73,7 +74,10 @@ export default async function GunDetails(props: {
 
             {/* Action Buttons */}
           <div className="flex gap-4 mb-8">
-             {/* EDIT BUTTON (Yellow) */}
+             {/* NEW COMPARE BUTTON */}
+             <CompareButton gun={gun} />
+
+             {/* Existing Edit Link */}
              <Link 
                href={`/wiki/${gun._id}/edit`}
                className="bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-yellow-500/30 flex items-center gap-2"
