@@ -6,57 +6,51 @@ import { Gun } from "../types/gun";
 
 export default function CompareButton({ gun }: { gun: Gun }) {
   const router = useRouter();
-  
-  // State for the Popup
   const [showModal, setShowModal] = useState(false);
   const [candidateGuns, setCandidateGuns] = useState<Gun[]>([]);
   const [search, setSearch] = useState("");
 
-  // 1. Handle the Initial Click (Start Comparison)
   const handleMainClick = () => {
     const existing = localStorage.getItem("compareList");
     let list: Gun[] = existing ? JSON.parse(existing) : [];
-
-    // Prevent adding same gun twice
     if (list.find((g) => g._id === gun._id)) {
       alert("⚠️ This gun is already selected!");
-      if (list.length === 1) setShowModal(true); // Open modal if they just need one more
+      if (list.length === 1) setShowModal(true);
       return;
     }
 
-    // If we ALREADY have a gun waiting, this makes 2. Go straight to compare.
+    
     if (list.length >= 1) {
-       list = [list[0], gun]; // Keep the first one, add this as second
+       list = [list[0], gun];
        localStorage.setItem("compareList", JSON.stringify(list));
        router.push("/compare");
     } else {
-       // This is the FIRST gun. Add it, then OPEN MODAL for the second.
+   
        list.push(gun);
        localStorage.setItem("compareList", JSON.stringify(list));
-       setShowModal(true); // <--- Triggers the popup
+       setShowModal(true); 
     }
   };
 
-  // 2. Handle the Second Click (Inside Popup)
+  
   const handleSecondSelection = (secondGun: Gun) => {
     const existing = localStorage.getItem("compareList");
     let list: Gun[] = existing ? JSON.parse(existing) : [gun];
 
-    list.push(secondGun); // Add the one we just picked
+    list.push(secondGun); 
     
-    // Save and Go!
+    
     localStorage.setItem("compareList", JSON.stringify(list));
     setShowModal(false);
     router.push("/compare");
   };
 
-  // 3. Fetch data ONLY when modal opens (saves performance)
+  
   useEffect(() => {
     if (showModal) {
       fetch("http://localhost:4000/guns")
         .then(res => res.json())
         .then(data => {
-            // Filter out the CURRENT gun (can't compare to itself)
             setCandidateGuns(data.filter((g: Gun) => g._id !== gun._id));
         });
     }

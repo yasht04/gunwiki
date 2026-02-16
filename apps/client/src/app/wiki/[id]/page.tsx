@@ -89,8 +89,6 @@ export default async function GunDetails(props: {
              <DeleteButton id={gun._id} />
           </div>
 
-            {/* Tech Specs Table (existing code) */}
-
             {/* Tech Specs Table */}
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
               <h3 className="text-lg font-bold mb-4 text-gray-400 uppercase tracking-wider">

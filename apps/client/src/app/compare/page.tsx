@@ -8,7 +8,6 @@ export default function ComparePage() {
   const [guns, setGuns] = useState<Gun[]>([]);
 
   useEffect(() => {
-    // Load guns from browser memory on startup
     const saved = localStorage.getItem("compareList");
     if (saved) {
       setGuns(JSON.parse(saved));
