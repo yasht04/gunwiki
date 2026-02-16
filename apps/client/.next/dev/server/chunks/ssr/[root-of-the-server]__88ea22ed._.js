@@ -59,6 +59,195 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$cl
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/GUN/apps/client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/GUN/apps/client/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$src$2f$components$2f$ThemeToggle$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/GUN/apps/client/src/components/ThemeToggle.tsx [app-ssr] (ecmascript)");
+// "use client";
+// import { useState, useMemo } from "react";
+// import Link from "next/link";
+// import { Gun } from "../types/gun";
+// import ThemeToggle from "./ThemeToggle";
+// interface GunGalleryProps {
+//   initialGuns: Gun[];
+// }
+// export default function GunGallery({ initialGuns }: GunGalleryProps) {
+//   const [search, setSearch] = useState("");
+//   const [activeCategory, setActiveCategory] = useState("All");
+//   // Advanced Filter States
+//   const [showFilters, setShowFilters] = useState(false);
+//   const [activeManufacturer, setActiveManufacturer] = useState("All");
+//   const [activeAction, setActiveAction] = useState("All");
+//   const [sortBy, setSortBy] = useState("Name (A-Z)");
+//   const categories = ["All", "Assault Rifle", "Pistol", "Sniper", "SMG", "Shotgun", "LMG", "Heavy"];
+//   // 1. DYNAMICALLY EXTRACT OPTIONS
+//   const manufacturers = useMemo(() => {
+//     const list = initialGuns.map((g) => g.manufacturer).filter(Boolean);
+//     return ["All", ...Array.from(new Set(list))].sort();
+//   }, [initialGuns]);
+//   const actions = useMemo(() => {
+//     const list = initialGuns.map((g) => g.specs?.action).filter(Boolean);
+//     return ["All", ...Array.from(new Set(list))].sort();
+//   }, [initialGuns]);
+//   // 2. ADVANCED FILTER LOGIC
+//   const filteredGuns = initialGuns
+//     .filter((gun) => {
+//       const matchesSearch = gun.name.toLowerCase().includes(search.toLowerCase());
+//       const gunCategory = gun.category || "Uncategorized";
+//       const matchesCategory = activeCategory === "All" || gunCategory === activeCategory;
+//       const matchesManu = activeManufacturer === "All" || gun.manufacturer === activeManufacturer;
+//       const matchesAction = activeAction === "All" || gun.specs?.action === activeAction;
+//       return matchesSearch && matchesCategory && matchesManu && matchesAction;
+//     })
+//     .sort((a, b) => {
+//       if (sortBy === "Name (Z-A)") return b.name.localeCompare(a.name);
+//       return a.name.localeCompare(b.name);
+//     });
+//   return (
+//     <div>
+//       {/* --- HEADER ISLAND --- */}
+//       <div className="flex flex-col gap-4 mb-8 bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl backdrop-blur-sm transition-colors duration-300">
+//         {/* TOP ROW */}
+//         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+//           <div className="flex items-center">
+//             <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-400 dark:from-blue-400 dark:to-emerald-400 whitespace-nowrap">
+//               Gun Wiki
+//             </h1>
+//           </div>
+//           <div className="flex flex-1 w-full max-w-3xl gap-2">
+//             <select
+//               value={activeCategory}
+//               onChange={(e) => setActiveCategory(e.target.value)}
+//               className="hidden md:block p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer font-medium"
+//             >
+//               {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+//             </select>
+//             <input
+//               type="text"
+//               placeholder="🔍 Search guns..."
+//               value={search}
+//               onChange={(e) => setSearch(e.target.value)}
+//               className="flex-1 w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none shadow-inner"
+//             />
+//             <button
+//               onClick={() => setShowFilters(!showFilters)}
+//               className={`p-3 rounded-xl border transition-all flex items-center gap-2 font-bold ${
+//                 showFilters 
+//                   ? "bg-blue-100 dark:bg-blue-900/30 border-blue-500 text-blue-600 dark:text-blue-400" 
+//                   : "bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800"
+//               }`}
+//             >
+//               <span className="text-lg">⚡</span> <span className="hidden md:inline">Filters</span>
+//             </button>
+//           </div>
+//           <div className="flex items-center gap-3">
+//             <ThemeToggle />
+//             <Link href="/add" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 whitespace-nowrap">
+//               <span className="text-xl">+</span> <span className="hidden md:inline">Add</span>
+//             </Link>
+//           </div>
+//         </div>
+//         {/* --- EXPANDABLE FILTER PANEL --- */}
+//         {showFilters && (
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-in slide-in-from-top-2 duration-200">
+//             <div className="space-y-1">
+//               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Manufacturer</label>
+//               <select
+//                 value={activeManufacturer}
+//                 onChange={(e) => setActiveManufacturer(e.target.value)}
+//                 className="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:border-blue-500 outline-none"
+//               >
+//                 {manufacturers.map(m => <option key={m} value={m}>{m}</option>)}
+//               </select>
+//             </div>
+//             <div className="space-y-1">
+//               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Action Type</label>
+//               <select
+//                 value={activeAction}
+//                 onChange={(e) => setActiveAction(e.target.value)}
+//                 className="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:border-blue-500 outline-none"
+//               >
+//                 {actions.map(a => <option key={a} value={a}>{a}</option>)}
+//               </select>
+//             </div>
+//             <div className="space-y-1">
+//               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sort By</label>
+//               <select
+//                 value={sortBy}
+//                 onChange={(e) => setSortBy(e.target.value)}
+//                 className="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:border-blue-500 outline-none"
+//               >
+//                 <option>Name (A-Z)</option>
+//                 <option>Name (Z-A)</option>
+//               </select>
+//             </div>
+//             <div className="md:col-span-3 text-right">
+//               <button 
+//                 onClick={() => { setActiveManufacturer("All"); setActiveAction("All"); setSortBy("Name (A-Z)"); }}
+//                 className="text-xs text-red-500 hover:text-red-700 font-bold underline"
+//               >
+//                 Reset Filters
+//               </button>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//       {/* --- GRID DISPLAY --- */}
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+//         {filteredGuns.map((gun) => (
+//           <Link 
+//             key={gun._id} 
+//             href={`/wiki/${gun._id}`}
+//             className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
+//           >
+//             {/* Image Section */}
+//             <div className="relative h-64 overflow-hidden bg-gray-200 dark:bg-gray-900">
+//               <img
+//                 src={gun.image_url}
+//                 alt={gun.name}
+//                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+//               />
+//               <div className="absolute top-4 right-4">
+//                 <span className="bg-white/90 dark:bg-black/50 backdrop-blur-md text-xs font-bold px-2 py-1 rounded text-gray-900 dark:text-white border border-gray-200 dark:border-white/20 shadow-sm">
+//                   {gun.category || "Unknown"}
+//                 </span>
+//               </div>
+//             </div>
+//             {/* Content Section */}
+//             <div className="p-6 flex-1 flex flex-col">
+//               <div className="flex-1">
+//                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+//                   {gun.name}
+//                 </h2>
+//                 <div className="flex gap-2 mb-3">
+//                     {gun.manufacturer && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase">{gun.manufacturer}</span>}
+//                     {gun.specs?.action && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase line-clamp-1">{gun.specs.action}</span>}
+//                 </div>
+//                 <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
+//                   {gun.description}
+//                 </p>
+//               </div>
+//               {/* Footer: Simple View Details Link */}
+//               <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+//                  <span className="text-blue-600 dark:text-blue-400 font-bold text-sm group-hover:underline block text-center">
+//                     View Details →
+//                  </span>
+//               </div>
+//             </div>
+//           </Link>
+//         ))}
+//       </div>
+//       {/* NO RESULTS MESSAGE */}
+//       {filteredGuns.length === 0 && (
+//         <div className="text-center py-20 text-gray-500 dark:text-gray-400">
+//           <p className="text-xl">No guns found matching filters</p>
+//           <button 
+//              onClick={() => {setSearch(""); setActiveCategory("All"); setActiveManufacturer("All"); setActiveAction("All");}} 
+//              className="mt-4 text-blue-500 font-bold hover:underline"
+//           >
+//             Clear all filters
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 "use client";
 ;
 ;
@@ -128,12 +317,12 @@ function GunGallery({ initialGuns }) {
                                     children: "Gun Wiki"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                    lineNumber: 59,
+                                    lineNumber: 271,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 58,
+                                lineNumber: 270,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -148,12 +337,12 @@ function GunGallery({ initialGuns }) {
                                                 children: cat
                                             }, cat, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 282,
                                                 columnNumber: 40
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 277,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -164,7 +353,7 @@ function GunGallery({ initialGuns }) {
                                         className: "flex-1 w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none shadow-inner"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 285,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -176,7 +365,7 @@ function GunGallery({ initialGuns }) {
                                                 children: "⚡"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 301,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -185,19 +374,19 @@ function GunGallery({ initialGuns }) {
                                                 children: "Filters"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 301,
                                                 columnNumber: 50
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 293,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 64,
+                                lineNumber: 276,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -205,7 +394,7 @@ function GunGallery({ initialGuns }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$src$2f$components$2f$ThemeToggle$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 306,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -217,7 +406,7 @@ function GunGallery({ initialGuns }) {
                                                 children: "+"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 96,
+                                                lineNumber: 308,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -226,25 +415,25 @@ function GunGallery({ initialGuns }) {
                                                 children: "Add"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 96,
+                                                lineNumber: 308,
                                                 columnNumber: 50
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 307,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 93,
+                                lineNumber: 305,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                        lineNumber: 57,
+                        lineNumber: 269,
                         columnNumber: 9
                     }, this),
                     showFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -258,7 +447,7 @@ function GunGallery({ initialGuns }) {
                                         children: "Manufacturer"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 105,
+                                        lineNumber: 317,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -270,18 +459,18 @@ function GunGallery({ initialGuns }) {
                                                 children: m
                                             }, m, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 323,
                                                 columnNumber: 41
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 106,
+                                        lineNumber: 318,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 104,
+                                lineNumber: 316,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -292,7 +481,7 @@ function GunGallery({ initialGuns }) {
                                         children: "Action Type"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 116,
+                                        lineNumber: 328,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -304,18 +493,18 @@ function GunGallery({ initialGuns }) {
                                                 children: a
                                             }, a, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 334,
                                                 columnNumber: 35
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 117,
+                                        lineNumber: 329,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 115,
+                                lineNumber: 327,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -326,7 +515,7 @@ function GunGallery({ initialGuns }) {
                                         children: "Sort By"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 339,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -338,26 +527,26 @@ function GunGallery({ initialGuns }) {
                                                 children: "Name (A-Z)"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 133,
+                                                lineNumber: 345,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                 children: "Name (Z-A)"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 134,
+                                                lineNumber: 346,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 128,
+                                        lineNumber: 340,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 126,
+                                lineNumber: 338,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -372,24 +561,24 @@ function GunGallery({ initialGuns }) {
                                     children: "Reset Filters"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                    lineNumber: 139,
+                                    lineNumber: 351,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 138,
+                                lineNumber: 350,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                        lineNumber: 103,
+                        lineNumber: 315,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                lineNumber: 54,
+                lineNumber: 266,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -407,7 +596,7 @@ function GunGallery({ initialGuns }) {
                                         className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 160,
+                                        lineNumber: 372,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -417,103 +606,86 @@ function GunGallery({ initialGuns }) {
                                             children: gun.category || "Unknown"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 378,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 377,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 159,
+                                lineNumber: 371,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-6 flex-1 flex flex-col",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex-1",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors",
-                                                children: gun.name
-                                            }, void 0, false, {
-                                                fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 175,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex gap-2 mb-3",
-                                                children: [
-                                                    gun.manufacturer && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase",
-                                                        children: gun.manufacturer
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                        lineNumber: 179,
-                                                        columnNumber: 42
-                                                    }, this),
-                                                    gun.specs?.action && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase line-clamp-1",
-                                                        children: gun.specs.action
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                        lineNumber: 180,
-                                                        columnNumber: 43
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 178,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-600 dark:text-gray-400 text-sm line-clamp-2",
-                                                children: gun.description
-                                            }, void 0, false, {
-                                                fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                                lineNumber: 182,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 174,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-6 pt-4 border-t border-gray-100 dark:border-gray-700",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-blue-600 dark:text-blue-400 font-bold text-sm group-hover:underline block text-center",
-                                            children: "View Details →"
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex-1",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                            className: "text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors",
+                                            children: gun.name
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                            lineNumber: 189,
-                                            columnNumber: 18
+                                            lineNumber: 387,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-2 mb-3",
+                                            children: [
+                                                gun.manufacturer && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase",
+                                                    children: gun.manufacturer
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
+                                                    lineNumber: 392,
+                                                    columnNumber: 42
+                                                }, this),
+                                                gun.specs?.action && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase line-clamp-1",
+                                                    children: gun.specs.action
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
+                                                    lineNumber: 393,
+                                                    columnNumber: 43
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
+                                            lineNumber: 390,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-gray-600 dark:text-gray-400 text-sm line-clamp-2",
+                                            children: gun.description
+                                        }, void 0, false, {
+                                            fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
+                                            lineNumber: 395,
+                                            columnNumber: 17
                                         }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                        lineNumber: 188,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
+                                    lineNumber: 386,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                                lineNumber: 173,
+                                lineNumber: 385,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, gun._id, true, {
                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                        lineNumber: 153,
+                        lineNumber: 365,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                lineNumber: 151,
+                lineNumber: 363,
                 columnNumber: 7
             }, this),
             filteredGuns.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,7 +696,7 @@ function GunGallery({ initialGuns }) {
                         children: "No guns found matching filters"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                        lineNumber: 201,
+                        lineNumber: 407,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -538,19 +710,19 @@ function GunGallery({ initialGuns }) {
                         children: "Clear all filters"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                        lineNumber: 202,
+                        lineNumber: 408,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-                lineNumber: 200,
+                lineNumber: 406,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/GUN/apps/client/src/components/GunGallery.tsx",
-        lineNumber: 52,
+        lineNumber: 264,
         columnNumber: 5
     }, this);
 }

@@ -176,19 +176,13 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
                   {gun.name}
                 </h2>
                 <div className="flex gap-2 mb-3">
+                    {/* Tiny badges for quick specs */}
                     {gun.manufacturer && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase">{gun.manufacturer}</span>}
                     {gun.specs?.action && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase line-clamp-1">{gun.specs.action}</span>}
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
                   {gun.description}
                 </p>
-              </div>
-              
-              {/* Footer: Simple View Details Link */}
-              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-                 <span className="text-blue-600 dark:text-blue-400 font-bold text-sm group-hover:underline block text-center">
-                    View Details →
-                 </span>
               </div>
             </div>
           </Link>
