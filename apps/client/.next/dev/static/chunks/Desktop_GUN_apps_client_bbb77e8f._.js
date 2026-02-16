@@ -72,48 +72,40 @@ var _s = __turbopack_context__.k.signature();
 function CompareButton({ gun }) {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
-    // State for the Popup
     const [showModal, setShowModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [candidateGuns, setCandidateGuns] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    // 1. Handle the Initial Click (Start Comparison)
     const handleMainClick = ()=>{
         const existing = localStorage.getItem("compareList");
         let list = existing ? JSON.parse(existing) : [];
-        // Prevent adding same gun twice
         if (list.find((g)=>g._id === gun._id)) {
             alert("⚠️ This gun is already selected!");
-            if (list.length === 1) setShowModal(true); // Open modal if they just need one more
+            if (list.length === 1) setShowModal(true);
             return;
         }
-        // If we ALREADY have a gun waiting, this makes 2. Go straight to compare.
         if (list.length >= 1) {
             list = [
                 list[0],
                 gun
-            ]; // Keep the first one, add this as second
+            ];
             localStorage.setItem("compareList", JSON.stringify(list));
             router.push("/compare");
         } else {
-            // This is the FIRST gun. Add it, then OPEN MODAL for the second.
             list.push(gun);
             localStorage.setItem("compareList", JSON.stringify(list));
-            setShowModal(true); // <--- Triggers the popup
+            setShowModal(true);
         }
     };
-    // 2. Handle the Second Click (Inside Popup)
     const handleSecondSelection = (secondGun)=>{
         const existing = localStorage.getItem("compareList");
         let list = existing ? JSON.parse(existing) : [
             gun
         ];
-        list.push(secondGun); // Add the one we just picked
-        // Save and Go!
+        list.push(secondGun);
         localStorage.setItem("compareList", JSON.stringify(list));
         setShowModal(false);
         router.push("/compare");
     };
-    // 3. Fetch data ONLY when modal opens (saves performance)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CompareButton.useEffect": ()=>{
             if (showModal) {
@@ -121,7 +113,6 @@ function CompareButton({ gun }) {
                     "CompareButton.useEffect": (res)=>res.json()
                 }["CompareButton.useEffect"]).then({
                     "CompareButton.useEffect": (data)=>{
-                        // Filter out the CURRENT gun (can't compare to itself)
                         setCandidateGuns(data.filter({
                             "CompareButton.useEffect": (g)=>g._id !== gun._id
                         }["CompareButton.useEffect"]));
@@ -141,7 +132,7 @@ function CompareButton({ gun }) {
                 children: "⚖️ Compare Gun"
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                lineNumber: 68,
+                lineNumber: 62,
                 columnNumber: 7
             }, this),
             showModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -159,7 +150,7 @@ function CompareButton({ gun }) {
                                             children: "Select Opponent"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 77,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -171,19 +162,19 @@ function CompareButton({ gun }) {
                                                     children: gun.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                    lineNumber: 85,
+                                                    lineNumber: 79,
                                                     columnNumber: 38
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                            lineNumber: 84,
+                                            lineNumber: 78,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 76,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -192,13 +183,13 @@ function CompareButton({ gun }) {
                                     children: "✕"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 82,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                            lineNumber: 81,
+                            lineNumber: 75,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -212,12 +203,12 @@ function CompareButton({ gun }) {
                                 onChange: (e)=>setSearch(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                lineNumber: 98,
+                                lineNumber: 92,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                            lineNumber: 97,
+                            lineNumber: 91,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -233,7 +224,7 @@ function CompareButton({ gun }) {
                                                 alt: candidate.name
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                lineNumber: 118,
+                                                lineNumber: 112,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -243,7 +234,7 @@ function CompareButton({ gun }) {
                                                         children: candidate.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                        lineNumber: 120,
+                                                        lineNumber: 114,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -251,13 +242,13 @@ function CompareButton({ gun }) {
                                                         children: candidate.category
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                        lineNumber: 123,
+                                                        lineNumber: 117,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                lineNumber: 119,
+                                                lineNumber: 113,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -265,13 +256,13 @@ function CompareButton({ gun }) {
                                                 children: "SELECT →"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                                lineNumber: 127,
+                                                lineNumber: 121,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, candidate._id, true, {
                                         fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                        lineNumber: 113,
+                                        lineNumber: 107,
                                         columnNumber: 17
                                     }, this)),
                                 candidateGuns.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$GUN$2f$apps$2f$client$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -279,24 +270,24 @@ function CompareButton({ gun }) {
                                     children: "Loading guns..."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                                    lineNumber: 135,
+                                    lineNumber: 129,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                            lineNumber: 109,
+                            lineNumber: 103,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                    lineNumber: 78,
+                    lineNumber: 72,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/GUN/apps/client/src/components/CompareButton.tsx",
-                lineNumber: 77,
+                lineNumber: 71,
                 columnNumber: 9
             }, this)
         ]
