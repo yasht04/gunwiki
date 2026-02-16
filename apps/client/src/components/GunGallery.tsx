@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Gun } from "../types/gun";
 import ThemeToggle from "./ThemeToggle";
-import CompareButton from "./CompareButton";
 
 interface GunGalleryProps {
   initialGuns: Gun[];
@@ -14,7 +13,7 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   
-  // --- NEW: Advanced Filter States ---
+  // Advanced Filter States
   const [showFilters, setShowFilters] = useState(false);
   const [activeManufacturer, setActiveManufacturer] = useState("All");
   const [activeAction, setActiveAction] = useState("All");
@@ -22,7 +21,7 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
 
   const categories = ["All", "Assault Rifle", "Pistol", "Sniper", "SMG", "Shotgun", "LMG", "Heavy"];
 
-  // 1. DYNAMICALLY EXTRACT OPTIONS (So you don't have to type them manually)
+  // 1. DYNAMICALLY EXTRACT OPTIONS
   const manufacturers = useMemo(() => {
     const list = initialGuns.map((g) => g.manufacturer).filter(Boolean);
     return ["All", ...Array.from(new Set(list))].sort();
@@ -36,25 +35,17 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
   // 2. ADVANCED FILTER LOGIC
   const filteredGuns = initialGuns
     .filter((gun) => {
-      // Basic Search
       const matchesSearch = gun.name.toLowerCase().includes(search.toLowerCase());
-      
-      // Category Filter
       const gunCategory = gun.category || "Uncategorized";
       const matchesCategory = activeCategory === "All" || gunCategory === activeCategory;
-
-      // Manufacturer Filter
       const matchesManu = activeManufacturer === "All" || gun.manufacturer === activeManufacturer;
-
-      // Action Filter
       const matchesAction = activeAction === "All" || gun.specs?.action === activeAction;
 
       return matchesSearch && matchesCategory && matchesManu && matchesAction;
     })
     .sort((a, b) => {
-      // Sorting Logic
       if (sortBy === "Name (Z-A)") return b.name.localeCompare(a.name);
-      return a.name.localeCompare(b.name); // Default A-Z
+      return a.name.localeCompare(b.name);
     });
 
   return (
@@ -62,7 +53,7 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
       {/* --- HEADER ISLAND --- */}
       <div className="flex flex-col gap-4 mb-8 bg-white dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl backdrop-blur-sm transition-colors duration-300">
         
-        {/* TOP ROW: Logo, Search, Main Actions */}
+        {/* TOP ROW */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
             <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-400 dark:from-blue-400 dark:to-emerald-400 whitespace-nowrap">
@@ -71,7 +62,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
           </div>
 
           <div className="flex flex-1 w-full max-w-3xl gap-2">
-            {/* Primary Category Filter */}
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
@@ -80,7 +70,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
             </select>
 
-            {/* Search Input */}
             <input
               type="text"
               placeholder="🔍 Search guns..."
@@ -89,7 +78,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               className="flex-1 w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none shadow-inner"
             />
 
-            {/* TOGGLE ADVANCED FILTERS BUTTON */}
             <button
               onClick={() => setShowFilters(!showFilters)}
               className={`p-3 rounded-xl border transition-all flex items-center gap-2 font-bold ${
@@ -113,8 +101,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
         {/* --- EXPANDABLE FILTER PANEL --- */}
         {showFilters && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-in slide-in-from-top-2 duration-200">
-            
-            {/* Manufacturer Filter */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Manufacturer</label>
               <select
@@ -126,7 +112,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               </select>
             </div>
 
-            {/* Action Type Filter */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Action Type</label>
               <select
@@ -138,7 +123,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               </select>
             </div>
 
-            {/* Sort Order */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Sort By</label>
               <select
@@ -151,7 +135,6 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
               </select>
             </div>
             
-            {/* Reset Link */}
             <div className="md:col-span-3 text-right">
               <button 
                 onClick={() => { setActiveManufacturer("All"); setActiveAction("All"); setSortBy("Name (A-Z)"); }}
@@ -167,8 +150,13 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
       {/* --- GRID DISPLAY --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredGuns.map((gun) => (
-          <div key={gun._id} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col">
-            <Link href={`/wiki/${gun._id}`} className="block relative h-64 overflow-hidden bg-gray-200 dark:bg-gray-900">
+          <Link 
+            key={gun._id} 
+            href={`/wiki/${gun._id}`}
+            className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
+          >
+            {/* Image Section */}
+            <div className="relative h-64 overflow-hidden bg-gray-200 dark:bg-gray-900">
               <img
                 src={gun.image_url}
                 alt={gun.name}
@@ -179,15 +167,15 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
                   {gun.category || "Unknown"}
                 </span>
               </div>
-            </Link>
+            </div>
 
+            {/* Content Section */}
             <div className="p-6 flex-1 flex flex-col">
               <div className="flex-1">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {gun.name}
                 </h2>
                 <div className="flex gap-2 mb-3">
-                    {/* Tiny badges for quick specs */}
                     {gun.manufacturer && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase">{gun.manufacturer}</span>}
                     {gun.specs?.action && <span className="text-[10px] font-bold bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-500 dark:text-gray-300 uppercase line-clamp-1">{gun.specs.action}</span>}
                 </div>
@@ -196,15 +184,14 @@ export default function GunGallery({ initialGuns }: GunGalleryProps) {
                 </p>
               </div>
               
-              {/* Compare Button is now part of the card footer */}
-              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
-                 <Link href={`/wiki/${gun._id}`} className="text-blue-600 dark:text-blue-400 font-bold text-sm hover:underline">View Details →</Link>
-                 <div className="scale-90 origin-right">
-                    <CompareButton gun={gun} />
-                 </div>
+              {/* Footer: Simple View Details Link */}
+              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                 <span className="text-blue-600 dark:text-blue-400 font-bold text-sm group-hover:underline block text-center">
+                    View Details →
+                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
